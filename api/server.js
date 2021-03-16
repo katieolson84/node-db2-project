@@ -9,4 +9,13 @@ server.use(express.json());
 
 server.use('/api/cars', carsRouter);
 
+// middleware
+server.use((err, req, res, next) => {
+    res.status(500).json({
+        message: err.message,
+        stack: err.stack,
+        custom: "Something is terribly wrong"
+    })
+})
+
 module.exports = server
