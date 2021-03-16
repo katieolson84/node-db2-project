@@ -32,7 +32,20 @@ router.post('/', checkCarPayload, checkVinNumberValid, checkVinNumberUnique, (re
     .catch(next)
 })
 // Stretch Update car
-
+router.put('/:id', checkCarId, (req,res,next) => {
+    Car.updateById(req.params.id, req.body)
+    .then(cars => {
+        res.status(200).json(cars)
+    })
+    .catch(next)
+})
 // Stretch Delete car
+router.delete('/:id', checkCarId, (req,res,next) => {
+    Car.deleteById(req.params.id)
+    .then(car => {
+        res.status(200).json(car)
+    })
+    .catch(next)
+})
 
 module.exports = router;
