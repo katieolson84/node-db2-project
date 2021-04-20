@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "server": "nodemon index.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "reset": "npm run rollback && nmp run migrate && npm run seed",
     "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand"
   },
   "devDependencies": {
@@ -16,8 +21,10 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "helmet": "^4.4.1",
     "knex": "^0.21.17",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "vin-validator": "^1.0.0"
   },
   "repository": {
     "type": "git",
